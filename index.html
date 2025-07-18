@@ -355,113 +355,6 @@
        }
 
 
-       .memories-form {
-           display: flex;
-           flex-direction: column;
-           gap: 15px;
-           margin-bottom: 20px;
-       }
-
-
-       .memories-input {
-           padding: 12px;
-           border: none;
-           border-radius: 10px;
-           background: rgba(255, 255, 255, 0.9);
-           font-size: 1rem;
-           resize: vertical;
-           min-height: 100px;
-       }
-
-
-       .memories-name {
-           min-height: auto;
-       }
-
-
-       .submit-btn {
-           background: linear-gradient(45deg, #4ECDC4, #45B7A8);
-           color: white;
-           border: none;
-           padding: 12px 25px;
-           border-radius: 15px;
-           font-size: 1rem;
-           cursor: pointer;
-           transition: all 0.3s ease;
-           font-weight: bold;
-       }
-
-
-       .submit-btn:hover {
-           transform: translateY(-2px);
-           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-       }
-
-
-       .memory-item {
-           background: rgba(255, 255, 255, 0.15);
-           padding: 20px;
-           border-radius: 15px;
-           margin-bottom: 15px;
-           border-left: 4px solid #FFE066;
-           position: relative;
-           transition: all 0.3s ease;
-       }
-
-
-       .memory-item:hover {
-           background: rgba(255, 255, 255, 0.2);
-           transform: translateY(-2px);
-       }
-
-
-       .memory-author {
-           font-weight: bold;
-           color: #FFE066;
-           margin-bottom: 5px;
-       }
-
-
-       .memory-text {
-           color: #fff;
-           line-height: 1.6;
-           margin-bottom: 10px;
-       }
-
-
-       .memory-date {
-           color: #FFE066;
-           font-size: 0.9rem;
-           opacity: 0.8;
-       }
-
-
-       .delete-btn {
-           position: absolute;
-           top: 15px;
-           right: 15px;
-           background: rgba(255, 107, 107, 0.8);
-           color: white;
-           border: none;
-           width: 30px;
-           height: 30px;
-           border-radius: 50%;
-           cursor: pointer;
-           font-size: 1rem;
-           transition: all 0.3s ease;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-       }
-
-
-       .delete-btn:hover {
-           background: #FF6B6B;
-           transform: scale(1.1);
-           box-shadow: 0 3px 10px rgba(255, 107, 107, 0.4);
-       }
-
-
        .quiz-container {
            text-align: center;
        }
@@ -838,43 +731,43 @@
 
 
        <div class="section">
-           <h2 class="section-title">📸 Galerie Photos</h2>Christelle
+           <h2 class="section-title">📸 Galerie Photos</h2>
            <div class="gallery">
                <div class="gallery-item" onclick="openModal(0)">
-                   <div class="gallery-placeholder"><img src="./img/1.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/1.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(1)">
-                   <div class="gallery-placeholder"><img src="./img/2.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/2.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(2)">
-                   <div class="gallery-placeholder"><img src="./img/3.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/3.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(3)">
-                   <div class="gallery-placeholder"><img src="./img/4.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/4.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(4)">
-                   <div class="gallery-placeholder"><img src="./img/5.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/5.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(5)">
-                   <div class="gallery-placeholder"><img src="./img/6.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/6.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(6)">
-                   <div class="gallery-placeholder"><img src="./img/29.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/29.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(7)">
-                   <div class="gallery-placeholder"><img src="./img/17.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/17.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(8)">
-                   <div class="gallery-placeholder"><img src="./img/11.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/11.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(9)">
-                   <div class="gallery-placeholder"><img src="./img/8.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/8.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(10)">
-                   <div class="gallery-placeholder"><img src="./img/24.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/24.jpg" alt=""></div>
                </div>
                <div class="gallery-item" onclick="openModal(11)">
-                   <div class="gallery-placeholder"><img src="./img/26.jpg" alt=""></div>
+                   <div class="gallery-placeholder"><img class="gallery-img" src="./img/26.jpg" alt=""></div>
                </div>
            </div>
            <p style="color: #fff; text-align: center; margin-top: 20px; font-style: italic;">
@@ -896,16 +789,7 @@
        </div>
 
 
-       <div class="section">
-           <h2 class="section-title">💭 Carnet de Souvenirs</h2>
-           <div class="memories-form">
-               <input type="text" class="memories-input memories-name" placeholder="Votre prénom" id="memoryName">
-               <textarea class="memories-input" placeholder="Partagez votre souvenir préféré de ce weekend..."
-                   id="memoryText"></textarea>
-               <button class="submit-btn" onclick="addMemory()">Ajouter un souvenir</button>
-           </div>
-           <div id="memoriesList"></div>
-       </div>
+
 
 
        <div class="section">
@@ -936,7 +820,7 @@
 
    <script>
        // Password protection
-       const correctPassword = "ploemeur2024"; // Change this to your desired password
+       const correctPassword = "prout"; // Change this to your desired password
        
        function checkPassword() {
            const input = document.getElementById('passwordInput').value;
@@ -1086,87 +970,7 @@
        });
 
 
-       // Gestion des souvenirs
-       function loadMemories() {
-           const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
-           const memoriesList = document.getElementById('memoriesList');
 
-
-           memoriesList.innerHTML = '';
-           memories.forEach((memory, index) => {
-               const memoryDiv = document.createElement('div');
-               memoryDiv.className = 'memory-item';
-               memoryDiv.innerHTML = `
-                   <button class="delete-btn" onclick="deleteMemory(${index})" title="Supprimer ce souvenir">×</button>
-                   <div class="memory-author">${memory.name}</div>
-                   <div class="memory-text">${memory.text}</div>
-                   <div class="memory-date">Ajouté le ${memory.date}</div>
-               `;
-               memoriesList.appendChild(memoryDiv);
-           });
-
-
-           // Afficher un message si aucun souvenir
-           if (memories.length === 0) {
-               memoriesList.innerHTML = `
-                   <div style="text-align: center; color: rgba(255,255,255,0.7); padding: 40px; font-style: italic;">
-                       Aucun souvenir partagé pour le moment...<br>
-                       Soyez le premier à partager vos impressions ! ✨
-                   </div>
-               `;
-           }
-       }
-
-
-       function addMemory() {
-           const name = document.getElementById('memoryName').value.trim();
-           const text = document.getElementById('memoryText').value.trim();
-
-
-           if (name && text) {
-               const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
-               memories.push({ name, text, date: new Date().toLocaleDateString('fr-FR') });
-               localStorage.setItem('familyMemories', JSON.stringify(memories));
-
-
-               document.getElementById('memoryName').value = '';
-               document.getElementById('memoryText').value = '';
-               loadMemories();
-
-
-               // Animation de confirmation
-               const submitBtn = document.querySelector('.submit-btn');
-               const originalText = submitBtn.textContent;
-               submitBtn.textContent = 'Souvenir ajouté ! ✅';
-               submitBtn.style.background = 'linear-gradient(45deg, #4ECDC4, #45B7A8)';
-
-
-               setTimeout(() => {
-                   submitBtn.textContent = originalText;
-                   submitBtn.style.background = 'linear-gradient(45deg, #4ECDC4, #45B7A8)';
-               }, 2000);
-           } else {
-               alert('Veuillez remplir tous les champs !');
-           }
-       }
-
-
-       function deleteMemory(index) {
-           if (confirm('Êtes-vous sûr de vouloir supprimer ce souvenir ?')) {
-               const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
-               memories.splice(index, 1);
-               localStorage.setItem('familyMemories', JSON.stringify(memories));
-               loadMemories();
-
-
-               // Animation de confirmation de suppression
-               const memoriesSection = document.querySelector('.section');
-               memoriesSection.style.animation = 'none';
-               setTimeout(() => {
-                   memoriesSection.style.animation = 'slideInUp 0.5s ease-out';
-               }, 10);
-           }
-       }
 
 
        // Quiz familial
@@ -1316,7 +1120,6 @@
 
        // Initialisation
        document.addEventListener('DOMContentLoaded', function () {
-           loadMemories();
            displayQuestion();
            updateScore();
        });
