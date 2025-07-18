@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Weekend en Famille à Ploemeur</title>
+   <style>
+       * {
+           margin: 0;
+           padding: 0;
+           box-sizing: border-box;
+       }
+
+
+       body {
+           font-family: 'Arial', sans-serif;
+           background: linear-gradient(135deg, #FFE066 0%, #FF6B6B 50%, #4ECDC4 100%);
+           min-height: 100vh;
+           overflow-x: hidden;
+       }
+
+
+       .container {
+           max-width: 1200px;
+           margin: 0 auto;
+           padding: 20px;
+       }
+
+
+       .header {
+           text-align: center;
+           margin-bottom: 40px;
+           animation: fadeInDown 1s ease-out;
+       }
+
+
+       .header h1 {
+           font-size: 3rem;
+           color: #fff;
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+           margin-bottom: 15px;
+           font-weight: bold;
+           background: linear-gradient(45deg, #FFE066, #FF6B6B, #4ECDC4, #FFE066);
+           background-size: 400% 400%;
+           -webkit-background-clip: text;
+           -webkit-text-fill-color: transparent;
+           background-clip: text;
+           animation: gradientShift 3s ease infinite;
+           position: relative;
+       }
+
+
+       .header h1::before {
+           content: '';
+           position: absolute;
+           top: -5px;
+           left: -5px;
+           right: -5px;
+           bottom: -5px;
+           background: linear-gradient(45deg, #FFE066, #FF6B6B, #4ECDC4);
+           border-radius: 15px;
+           opacity: 0.3;
+           filter: blur(8px);
+           z-index: -1;
+           animation: glow 2s ease-in-out infinite alternate;
+       }
+
+
+       @keyframes gradientShift {
+           0% {
+               background-position: 0% 50%;
+           }
+
+
+           50% {
+               background-position: 100% 50%;
+           }
+
+
+           100% {
+               background-position: 0% 50%;
+           }
+       }
+
+
+       @keyframes glow {
+           from {
+               opacity: 0.3;
+               transform: scale(0.95);
+           }
+
+
+           to {
+               opacity: 0.6;
+               transform: scale(1.05);
+           }
+       }
+
+
+       .header p {
+           font-size: 1.3rem;
+           color: #fff;
+           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+           margin-bottom: 10px;
+       }
+
+
+       .location {
+           display: inline-block;
+           background: rgba(255, 255, 255, 0.2);
+           padding: 8px 16px;
+           border-radius: 20px;
+           backdrop-filter: blur(10px);
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           color: #fff;
+           font-weight: bold;
+           animation: pulse 2s infinite;
+       }
+
+
+       .audio-controls {
+           position: fixed;
+           top: 20px;
+           right: 20px;
+           z-index: 1000;
+           background: rgba(255, 255, 255, 0.2);
+           padding: 10px;
+           border-radius: 15px;
+           backdrop-filter: blur(10px);
+           border: 1px solid rgba(255, 255, 255, 0.3);
+       }
+
+
+       .audio-btn {
+           background: none;
+           border: none;
+           color: #fff;
+           font-size: 1.5rem;
+           cursor: pointer;
+           padding: 5px;
+           border-radius: 10px;
+           transition: all 0.3s ease;
+       }
+
+
+       .audio-btn:hover {
+           background: rgba(255, 255, 255, 0.2);
+       }
+
+
+       .section {
+           background: rgba(255, 255, 255, 0.1);
+           padding: 30px;
+           border-radius: 20px;
+           backdrop-filter: blur(15px);
+           border: 2px solid rgba(255, 255, 255, 0.3);
+           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+           margin-bottom: 40px;
+           animation: slideInUp 1s ease-out;
+       }
+
+
+       .video-container {
+           position: relative;
+       }
+
+
+       .video-wrapper {
+           position: relative;
+           width: 100%;
+           height: 0;
+           padding-bottom: 56.25%;
+           border-radius: 15px;
+           overflow: hidden;
+           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+           margin-bottom: 20px;
+       }
+
+
+       .video-element {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+       }
+
+
+       .download-btn {
+           background: linear-gradient(45deg, #FF6B6B, #4ECDC4);
+           color: white;
+           border: none;
+           padding: 15px 30px;
+           border-radius: 25px;
+           font-size: 1.1rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           display: inline-block;
+           text-decoration: none;
+           font-weight: bold;
+           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+       }
+
+
+       .download-btn:hover {
+           transform: translateY(-3px);
+           box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+       }
+
+
+       .gallery {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+           gap: 20px;
+           margin-top: 20px;
+       }
+
+
+       .gallery-item {
+           position: relative;
+           aspect-ratio: 4/3;
+           border-radius: 15px;
+           overflow: hidden;
+           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+           cursor: pointer;
+           transition: transform 0.3s ease;
+       }
+
+
+       .gallery-item:hover {
+           transform: scale(1.05);
+       }
+
+
+       .gallery-placeholder {
+           width: 100%;
+           height: 100%;
+           background: linear-gradient(45deg, #FFE066, #FF6B6B);
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           color: white;
+           font-size: 3rem;
+           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+       }
+
+
+       .gallery-img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+       }
+
+
+       .modal {
+           display: none;
+           position: fixed;
+           z-index: 2000;
+           left: 0;
+           top: 0;
+           width: 100%;
+           height: 100%;
+           background: rgba(0, 0, 0, 0.9);
+           backdrop-filter: blur(5px);
+       }
+
+
+       .modal-content {
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           transform: translate(-50%, -50%);
+           max-width: 90%;
+           max-height: 90%;
+           border-radius: 15px;
+           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+       }
+
+
+       .modal-img {
+           width: 100%;
+           height: 100%;
+           object-fit: contain;
+           border-radius: 15px;
+       }
+
+
+       .modal-close {
+           position: absolute;
+           top: 20px;
+           right: 30px;
+           color: white;
+           font-size: 40px;
+           font-weight: bold;
+           cursor: pointer;
+           z-index: 2001;
+           background: rgba(0, 0, 0, 0.5);
+           border-radius: 50%;
+           width: 50px;
+           height: 50px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           transition: all 0.3s ease;
+       }
+
+
+       .modal-close:hover {
+           background: rgba(255, 255, 255, 0.2);
+           transform: scale(1.1);
+       }
+
+
+       .modal-nav {
+           position: absolute;
+           top: 50%;
+           transform: translateY(-50%);
+           background: rgba(0, 0, 0, 0.5);
+           color: white;
+           border: none;
+           font-size: 30px;
+           padding: 15px 20px;
+           cursor: pointer;
+           border-radius: 10px;
+           transition: all 0.3s ease;
+       }
+
+
+       .modal-nav:hover {
+           background: rgba(255, 255, 255, 0.2);
+           transform: translateY(-50%) scale(1.1);
+       }
+
+
+       .modal-prev {
+           left: 20px;
+       }
+
+
+       .modal-next {
+           right: 20px;
+       }
+
+
+       .section-title {
+           color: #fff;
+           font-size: 2rem;
+           margin-bottom: 20px;
+           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+           text-align: center;
+       }
+
+
+       .memories-form {
+           display: flex;
+           flex-direction: column;
+           gap: 15px;
+           margin-bottom: 20px;
+       }
+
+
+       .memories-input {
+           padding: 12px;
+           border: none;
+           border-radius: 10px;
+           background: rgba(255, 255, 255, 0.9);
+           font-size: 1rem;
+           resize: vertical;
+           min-height: 100px;
+       }
+
+
+       .memories-name {
+           min-height: auto;
+       }
+
+
+       .submit-btn {
+           background: linear-gradient(45deg, #4ECDC4, #45B7A8);
+           color: white;
+           border: none;
+           padding: 12px 25px;
+           border-radius: 15px;
+           font-size: 1rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           font-weight: bold;
+       }
+
+
+       .submit-btn:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+       }
+
+
+       .memory-item {
+           background: rgba(255, 255, 255, 0.15);
+           padding: 20px;
+           border-radius: 15px;
+           margin-bottom: 15px;
+           border-left: 4px solid #FFE066;
+           position: relative;
+           transition: all 0.3s ease;
+       }
+
+
+       .memory-item:hover {
+           background: rgba(255, 255, 255, 0.2);
+           transform: translateY(-2px);
+       }
+
+
+       .memory-author {
+           font-weight: bold;
+           color: #FFE066;
+           margin-bottom: 5px;
+       }
+
+
+       .memory-text {
+           color: #fff;
+           line-height: 1.6;
+           margin-bottom: 10px;
+       }
+
+
+       .memory-date {
+           color: #FFE066;
+           font-size: 0.9rem;
+           opacity: 0.8;
+       }
+
+
+       .delete-btn {
+           position: absolute;
+           top: 15px;
+           right: 15px;
+           background: rgba(255, 107, 107, 0.8);
+           color: white;
+           border: none;
+           width: 30px;
+           height: 30px;
+           border-radius: 50%;
+           cursor: pointer;
+           font-size: 1rem;
+           transition: all 0.3s ease;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+       }
+
+
+       .delete-btn:hover {
+           background: #FF6B6B;
+           transform: scale(1.1);
+           box-shadow: 0 3px 10px rgba(255, 107, 107, 0.4);
+       }
+
+
+       .quiz-container {
+           text-align: center;
+       }
+
+
+       .quiz-question {
+           color: #fff;
+           font-size: 1.3rem;
+           margin-bottom: 20px;
+           font-weight: bold;
+       }
+
+
+       .quiz-options {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+           gap: 15px;
+           margin-bottom: 20px;
+       }
+
+
+       .quiz-option {
+           background: rgba(255, 255, 255, 0.2);
+           border: 2px solid transparent;
+           padding: 15px;
+           border-radius: 15px;
+           color: #fff;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           font-size: 1rem;
+       }
+
+
+       .quiz-option:hover {
+           background: rgba(255, 255, 255, 0.3);
+           border-color: #FFE066;
+       }
+
+
+       .quiz-option.selected {
+           background: #FFE066;
+           color: #333;
+           border-color: #FFE066;
+       }
+
+
+       .quiz-option.correct {
+           background: #4ECDC4;
+           border-color: #4ECDC4;
+       }
+
+
+       .quiz-option.incorrect {
+           background: #FF6B6B;
+           border-color: #FF6B6B;
+       }
+
+
+       .quiz-score {
+           color: #fff;
+           font-size: 1.2rem;
+           font-weight: bold;
+           margin-top: 20px;
+       }
+
+
+       .next-question-btn {
+           background: linear-gradient(45deg, #FFE066, #FFA500);
+           color: #333;
+           border: none;
+           padding: 12px 25px;
+           border-radius: 15px;
+           font-size: 1rem;
+           cursor: pointer;
+           transition: all 0.3s ease;
+           font-weight: bold;
+           margin-top: 15px;
+       }
+
+
+       .next-question-btn:hover {
+           transform: translateY(-2px);
+           box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+       }
+
+
+       .decorative-elements {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 100%;
+           height: 100%;
+           pointer-events: none;
+           overflow: hidden;
+       }
+
+
+       .summer-icon {
+           position: absolute;
+           font-size: 2rem;
+           animation: float 3s ease-in-out infinite;
+           opacity: 0.7;
+       }
+
+
+       .sun {
+           top: 10%;
+           right: 10%;
+           animation-delay: 0s;
+       }
+
+
+       .palm {
+           top: 20%;
+           left: 5%;
+           animation-delay: 1s;
+       }
+
+
+       .wave {
+           bottom: 20%;
+           right: 15%;
+           animation-delay: 2s;
+       }
+
+
+       .shell {
+           bottom: 10%;
+           left: 10%;
+           animation-delay: 1.5s;
+       }
+
+
+       .description {
+           text-align: center;
+           background: rgba(255, 255, 255, 0.15);
+           padding: 25px;
+           border-radius: 15px;
+           backdrop-filter: blur(10px);
+           border: 1px solid rgba(255, 255, 255, 0.3);
+           animation: fadeIn 1s ease-out 0.6s both;
+       }
+
+
+       .description h2 {
+           color: #fff;
+           font-size: 2rem;
+           margin-bottom: 15px;
+           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+       }
+
+
+       .description p {
+           color: #fff;
+           font-size: 1.1rem;
+           line-height: 1.6;
+           text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+       }
+
+
+       .highlight {
+           background: rgba(255, 255, 255, 0.3);
+           padding: 2px 8px;
+           border-radius: 8px;
+           font-weight: bold;
+       }
+
+
+       @keyframes fadeInDown {
+           from {
+               opacity: 0;
+               transform: translateY(-30px);
+           }
+
+
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+
+       @keyframes slideInUp {
+           from {
+               opacity: 0;
+               transform: translateY(50px);
+           }
+
+
+           to {
+               opacity: 1;
+               transform: translateY(0);
+           }
+       }
+
+
+       @keyframes fadeIn {
+           from {
+               opacity: 0;
+           }
+
+
+           to {
+               opacity: 1;
+           }
+       }
+
+
+       @keyframes float {
+
+
+           0%,
+           100% {
+               transform: translateY(0px);
+           }
+
+
+           50% {
+               transform: translateY(-10px);
+           }
+       }
+
+
+       @keyframes pulse {
+
+
+           0%,
+           100% {
+               transform: scale(1);
+           }
+
+
+           50% {
+               transform: scale(1.05);
+           }
+       }
+
+
+       @media (max-width: 768px) {
+           .header h1 {
+               font-size: 2rem;
+           }
+
+
+           .header p {
+               font-size: 1.1rem;
+           }
+
+
+           .section {
+               padding: 20px;
+           }
+
+
+           .summer-icon {
+               font-size: 1.5rem;
+           }
+
+
+           .gallery {
+               grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+               gap: 15px;
+           }
+
+
+           .quiz-options {
+               grid-template-columns: 1fr;
+           }
+       }
+   </style>
+</head>
+
+
+<body>
+   <div class="decorative-elements">
+       <div class="summer-icon sun">☀️</div>
+       <div class="summer-icon palm">🌴</div>
+       <div class="summer-icon wave">🌊</div>
+       <div class="summer-icon shell">🐚</div>
+   </div>
+
+
+   <div class="audio-controls">
+       <button class="audio-btn" onclick="toggleAudio()" id="audioBtn">🔊</button>
+       <audio id="backgroundAudio" loop>
+           <source src="song.mp3" type="audio/mpeg">
+           <!-- Fallback si pas de fichier audio -->
+       </audio>
+   </div>
+
+
+   <div class="container">
+       <header class="header">
+           <h1>Weekend en Famille</h1>
+           <p>Souvenirs d'été</p>
+           <div class="location">📍 Ploemeur, Bretagne</div>
+       </header>
+
+
+       <div class="section video-container">
+           <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+               <iframe src="https://drive.google.com/file/d/1slGi9JsAecw_ry0GFoeHVEL1sdfrojCH/preview" width="100%" height="100%"
+                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allow="autoplay">
+               </iframe>
+           </div>
+           <div style="text-align: center; margin-top: 1em;">
+               <a href="https://drive.google.com/uc?export=download&id=1slGi9JsAecw_ry0GFoeHVEL1sdfrojCH" download="weekend-ploemeur.mp4"
+                   class="download-btn">
+                   📥 Télécharger la vidéo
+               </a>
+           </div>
+       </div>
+
+
+       <div class="section">
+           <h2 class="section-title">📸 Galerie Photos</h2>
+           <div class="gallery">
+               <div class="gallery-item" onclick="openModal(0)">
+                   <div class="gallery-placeholder"><img src="./img/1.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(1)">
+                   <div class="gallery-placeholder"><img src="./img/2.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(2)">
+                   <div class="gallery-placeholder"><img src="./img/3.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(3)">
+                   <div class="gallery-placeholder"><img src="./img/4.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(4)">
+                   <div class="gallery-placeholder"><img src="./img/5.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(5)">
+                   <div class="gallery-placeholder"><img src="./img/6.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(6)">
+                   <div class="gallery-placeholder"><img src="./img/29.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(7)">
+                   <div class="gallery-placeholder"><img src="./img/17.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(8)">
+                   <div class="gallery-placeholder"><img src="./img/11.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(9)">
+                   <div class="gallery-placeholder"><img src="./img/8.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(10)">
+                   <div class="gallery-placeholder"><img src="./img/24.jpg" alt=""></div>
+               </div>
+               <div class="gallery-item" onclick="openModal(11)">
+                   <div class="gallery-placeholder"><img src="./img/26.jpg" alt=""></div>
+               </div>
+           </div>
+           <p style="color: #fff; text-align: center; margin-top: 20px; font-style: italic;">
+               Petites sélections de photos pour revivre les moments forts de notre weekend en famille.
+           </p>
+       </div>
+
+
+       <!-- Modal pour afficher les images en grand -->
+       <div id="imageModal" class="modal">
+           <span class="modal-close" onclick="closeModal()">&times;</span>
+           <button class="modal-nav modal-prev" onclick="changeImage(-1)">❮</button>
+           <button class="modal-nav modal-next" onclick="changeImage(1)">❯</button>
+           <div class="modal-content">
+               <div id="modalImage" class="gallery-placeholder" style="width: 80vw; height: 80vh;">
+                   🏠
+               </div>
+           </div>
+       </div>
+
+
+       <div class="section">
+           <h2 class="section-title">💭 Carnet de Souvenirs</h2>
+           <div class="memories-form">
+               <input type="text" class="memories-input memories-name" placeholder="Votre prénom" id="memoryName">
+               <textarea class="memories-input" placeholder="Partagez votre souvenir préféré de ce weekend..."
+                   id="memoryText"></textarea>
+               <button class="submit-btn" onclick="addMemory()">Ajouter un souvenir</button>
+           </div>
+           <div id="memoriesList"></div>
+       </div>
+
+
+       <div class="section">
+           <h2 class="section-title">🎯 Quiz Familial</h2>
+           <div class="quiz-container">
+               <div class="quiz-question" id="quizQuestion"></div>
+               <div class="quiz-options" id="quizOptions"></div>
+               <button class="next-question-btn" onclick="nextQuestion()" id="nextBtn" style="display: none;">
+                   Question suivante
+               </button>
+               <div class="quiz-score" id="quizScore"></div>
+           </div>
+       </div>
+
+
+       <div class="description">
+           <h2>Un weekend magique 🌟</h2>
+           <p>
+               Découvrez notre <span class="highlight">weekend inoubliable</span> à Ploemeur.
+               Entre <span class="highlight">moments de complicité</span>, découvertes bretonnes et souvenirs
+               d'enfance,
+               ce vlog capture toute la <span class="highlight">chaleur de l'été</span> et la magie des retrouvailles
+               en famille.
+           </p>
+       </div>
+   </div>
+
+
+   <script>
+       // Gestion de l'audio d'ambiance
+       let audioPlaying = false;
+       const audio = document.getElementById('backgroundAudio');
+       const audioBtn = document.getElementById('audioBtn');
+
+
+       function toggleAudio() {
+           if (audioPlaying) {
+               audio.pause();
+               audioBtn.textContent = '🔇';
+               audioPlaying = false;
+           } else {
+               audio.play().catch(e => {
+                   console.log('Pas de fichier audio disponible');
+               });
+               audioBtn.textContent = '🔊';
+               audioPlaying = true;
+           }
+       }
+
+
+       // Gestion de la galerie photo
+       const galleryImages = [
+           { src: './img/1.jpg', icon: '🏠', alt: 'La maison des grands-parents' },
+           { src: './img/2.jpg', icon: '👨‍👩‍👧‍👦', alt: 'Photo de famille' },
+           { src: './img/3.jpg', icon: '🌊', alt: 'La plage de Ploemeur' },
+           { src: './img/4.jpg', icon: '🍽️', alt: 'Repas en famille' },
+           { src: './img/5.jpg', icon: '🌅', alt: 'Coucher de soleil' },
+           { src: './img/6.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/29.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/17.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/11.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/8.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/24.jpg', icon: '🎯', alt: 'Activités du weekend' },
+           { src: './img/26.jpg', icon: '🎯', alt: 'Activités du weekend' }
+       ];
+
+
+       let currentImageIndex = 0;
+
+
+       function openModal(index) {
+           currentImageIndex = index;
+           const modal = document.getElementById('imageModal');
+           const modalImage = document.getElementById('modalImage');
+           const image = galleryImages[index];
+
+
+           // Vérifier si l'image existe, sinon utiliser le placeholder
+           const img = new Image();
+           img.onload = function () {
+               modalImage.innerHTML = `<img src="${image.src}" alt="${image.alt}" class="modal-img">`;
+           };
+           img.onerror = function () {
+               modalImage.innerHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%; font-size: 5rem;">${image.icon}</div>`;
+           };
+           img.src = image.src;
+
+
+           modal.style.display = 'block';
+           document.body.style.overflow = 'hidden';
+       }
+
+
+       function closeModal() {
+           const modal = document.getElementById('imageModal');
+           modal.style.display = 'none';
+           document.body.style.overflow = 'auto';
+       }
+
+
+       function changeImage(direction) {
+           currentImageIndex += direction;
+
+
+           if (currentImageIndex >= galleryImages.length) {
+               currentImageIndex = 0;
+           } else if (currentImageIndex < 0) {
+               currentImageIndex = galleryImages.length - 1;
+           }
+
+
+           const modalImage = document.getElementById('modalImage');
+           const image = galleryImages[currentImageIndex];
+
+
+           // Vérifier si l'image existe, sinon utiliser le placeholder
+           const img = new Image();
+           img.onload = function () {
+               modalImage.innerHTML = `<img src="${image.src}" alt="${image.alt}" class="modal-img">`;
+           };
+           img.onerror = function () {
+               modalImage.innerHTML = `<div class="gallery-placeholder" style="width: 100%; height: 100%; font-size: 5rem;">${image.icon}</div>`;
+           };
+           img.src = image.src;
+       }
+
+
+       // Fermer le modal avec la touche Escape
+       document.addEventListener('keydown', function (event) {
+           if (event.key === 'Escape') {
+               closeModal();
+           } else if (event.key === 'ArrowLeft') {
+               changeImage(-1);
+           } else if (event.key === 'ArrowRight') {
+               changeImage(1);
+           }
+       });
+
+
+       // Fermer le modal en cliquant à côté de l'image
+       document.getElementById('imageModal').addEventListener('click', function (event) {
+           if (event.target === this) {
+               closeModal();
+           }
+       });
+
+
+       // Gestion des souvenirs
+       function loadMemories() {
+           const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
+           const memoriesList = document.getElementById('memoriesList');
+
+
+           memoriesList.innerHTML = '';
+           memories.forEach((memory, index) => {
+               const memoryDiv = document.createElement('div');
+               memoryDiv.className = 'memory-item';
+               memoryDiv.innerHTML = `
+                   <button class="delete-btn" onclick="deleteMemory(${index})" title="Supprimer ce souvenir">×</button>
+                   <div class="memory-author">${memory.name}</div>
+                   <div class="memory-text">${memory.text}</div>
+                   <div class="memory-date">Ajouté le ${memory.date}</div>
+               `;
+               memoriesList.appendChild(memoryDiv);
+           });
+
+
+           // Afficher un message si aucun souvenir
+           if (memories.length === 0) {
+               memoriesList.innerHTML = `
+                   <div style="text-align: center; color: rgba(255,255,255,0.7); padding: 40px; font-style: italic;">
+                       Aucun souvenir partagé pour le moment...<br>
+                       Soyez le premier à partager vos impressions ! ✨
+                   </div>
+               `;
+           }
+       }
+
+
+       function addMemory() {
+           const name = document.getElementById('memoryName').value.trim();
+           const text = document.getElementById('memoryText').value.trim();
+
+
+           if (name && text) {
+               const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
+               memories.push({ name, text, date: new Date().toLocaleDateString('fr-FR') });
+               localStorage.setItem('familyMemories', JSON.stringify(memories));
+
+
+               document.getElementById('memoryName').value = '';
+               document.getElementById('memoryText').value = '';
+               loadMemories();
+
+
+               // Animation de confirmation
+               const submitBtn = document.querySelector('.submit-btn');
+               const originalText = submitBtn.textContent;
+               submitBtn.textContent = 'Souvenir ajouté ! ✅';
+               submitBtn.style.background = 'linear-gradient(45deg, #4ECDC4, #45B7A8)';
+
+
+               setTimeout(() => {
+                   submitBtn.textContent = originalText;
+                   submitBtn.style.background = 'linear-gradient(45deg, #4ECDC4, #45B7A8)';
+               }, 2000);
+           } else {
+               alert('Veuillez remplir tous les champs !');
+           }
+       }
+
+
+       function deleteMemory(index) {
+           if (confirm('Êtes-vous sûr de vouloir supprimer ce souvenir ?')) {
+               const memories = JSON.parse(localStorage.getItem('familyMemories') || '[]');
+               memories.splice(index, 1);
+               localStorage.setItem('familyMemories', JSON.stringify(memories));
+               loadMemories();
+
+
+               // Animation de confirmation de suppression
+               const memoriesSection = document.querySelector('.section');
+               memoriesSection.style.animation = 'none';
+               setTimeout(() => {
+                   memoriesSection.style.animation = 'slideInUp 0.5s ease-out';
+               }, 10);
+           }
+       }
+
+
+       // Quiz familial
+       const quizQuestions = [
+           {
+               question: "Quel était le plat préparé par Christelle ?",
+               options: ["Tartes", "Couscous", "Kouign-amann", "Far breton"],
+               correct: 0
+           },
+           {
+               question: "Qui est le ou la plus fort(e) à la pétanque ?",
+               options: ["Thomas", "Téva", "Jeanne", "Wiwi"],
+               correct: 2
+           },
+           {
+               question: "Quelle est la meilleure voiture ?",
+               options: ["Tesla", "Dacia", "BMW", "Mercedes"],
+               correct: 0
+           },
+           {
+               question: "Qui a organisé le repas du roi ?",
+               options: ["Fabrice et Christelle", "Fabrice et Vincent", "Wiwi et Arthur", "Jeanne et Armand"],
+               correct: 1
+           },
+           {
+               question: "Combien a couté la terrine royale ?",
+               options: ["75€", "112€", "10€", "60€"],
+               correct: 3
+           },
+           {
+               question: "Qu'à répondu la boulangère à la phrase : 'le client est roi' ?",
+               options: ["Eh ben qu'il fasse son pain, le roi !", "le vendeur est son serviteur, pas son esclave !", "le vendeur est empereur !", "Le client est roi, mais le vendeur n’est pas son bouffon."],
+               correct: 2
+           }
+       ];
+
+
+       let currentQuestion = 0;
+       let score = 0;
+       let answered = false;
+
+
+       function displayQuestion() {
+           const question = quizQuestions[currentQuestion];
+           document.getElementById('quizQuestion').textContent = question.question;
+
+
+           const optionsDiv = document.getElementById('quizOptions');
+           optionsDiv.innerHTML = '';
+
+
+           question.options.forEach((option, index) => {
+               const optionDiv = document.createElement('div');
+               optionDiv.className = 'quiz-option';
+               optionDiv.textContent = option;
+               optionDiv.onclick = () => selectAnswer(index);
+               optionsDiv.appendChild(optionDiv);
+           });
+
+
+           document.getElementById('nextBtn').style.display = 'none';
+           answered = false;
+       }
+
+
+       function selectAnswer(selectedIndex) {
+           if (answered) return;
+
+
+           const question = quizQuestions[currentQuestion];
+           const options = document.querySelectorAll('.quiz-option');
+
+
+           options.forEach((option, index) => {
+               option.classList.remove('selected');
+               if (index === question.correct) {
+                   option.classList.add('correct');
+               } else if (index === selectedIndex) {
+                   option.classList.add('incorrect');
+               }
+           });
+
+
+           if (selectedIndex === question.correct) {
+               score++;
+           }
+
+
+           answered = true;
+           document.getElementById('nextBtn').style.display = 'inline-block';
+           updateScore();
+       }
+
+
+       function nextQuestion() {
+           currentQuestion++;
+           if (currentQuestion < quizQuestions.length) {
+               displayQuestion();
+           } else {
+               showFinalScore();
+           }
+       }
+
+
+       function updateScore() {
+           document.getElementById('quizScore').textContent =
+               `Score: ${score}/${quizQuestions.length}`;
+       }
+
+
+       function showFinalScore() {
+           const percentage = Math.round((score / quizQuestions.length) * 100);
+           let message = '';
+
+
+           if (percentage >= 80) {
+               message = 'Excellent ! Vous avez une excellente mémoire familiale ! 🏆';
+           } else if (percentage >= 60) {
+               message = 'Bien joué ! Vous avez retenu les moments importants ! 👏';
+           } else {
+               message = 'Pas mal ! Il faut revoir le vlog pour se rafraîchir la mémoire ! 😄';
+           }
+
+
+           document.getElementById('quizQuestion').textContent =
+               `Quiz terminé ! Score final: ${score}/${quizQuestions.length} (${percentage}%)`;
+           document.getElementById('quizOptions').innerHTML = `
+               <div style="color: #fff; font-size: 1.2rem; text-align: center; margin: 20px 0;">
+                   ${message}
+               </div>
+               <button class="submit-btn" onclick="restartQuiz()" style="margin: 0 auto; display: block;">
+                   Recommencer le quiz
+               </button>
+           `;
+           document.getElementById('nextBtn').style.display = 'none';
+       }
+
+
+       function restartQuiz() {
+           currentQuestion = 0;
+           score = 0;
+           answered = false;
+           displayQuestion();
+           updateScore();
+       }
+
+
+       // Initialisation
+       document.addEventListener('DOMContentLoaded', function () {
+           loadMemories();
+           displayQuestion();
+           updateScore();
+       });
+   </script>
+</body>
+
+
+</html>
+
