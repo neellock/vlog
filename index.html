@@ -6,6 +6,7 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>Weekend en Famille à Ploemeur</title>
+   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; frame-src https://drive.google.com;">
    <style>
        * {
            margin: 0;
@@ -735,6 +736,64 @@
 
 
 <body>
+   <!-- Password overlay -->
+   <div id="passwordOverlay" style="
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(135deg, #FFE066 0%, #FF6B6B 50%, #4ECDC4 100%);
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       z-index: 9999;
+       backdrop-filter: blur(10px);
+   ">
+       <div style="
+           background: rgba(255, 255, 255, 0.2);
+           padding: 40px;
+           border-radius: 20px;
+           backdrop-filter: blur(15px);
+           border: 2px solid rgba(255, 255, 255, 0.3);
+           text-align: center;
+           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+       ">
+           <h2 style="color: #fff; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">
+               🔒 Accès protégé
+           </h2>
+           <p style="color: #fff; margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);">
+               Entrez le mot de passe pour accéder au vlog familial
+           </p>
+           <input type="password" id="passwordInput" placeholder="Mot de passe" style="
+               padding: 12px;
+               border: none;
+               border-radius: 10px;
+               background: rgba(255, 255, 255, 0.9);
+               font-size: 1rem;
+               margin-bottom: 15px;
+               width: 250px;
+               text-align: center;
+           ">
+           <br>
+           <button onclick="checkPassword()" style="
+               background: linear-gradient(45deg, #4ECDC4, #45B7A8);
+               color: white;
+               border: none;
+               padding: 12px 25px;
+               border-radius: 15px;
+               font-size: 1rem;
+               cursor: pointer;
+               font-weight: bold;
+               transition: all 0.3s ease;
+           ">
+               Accéder
+           </button>
+           <div id="passwordError" style="color: #FF6B6B; margin-top: 10px; font-weight: bold;"></div>
+       </div>
+   </div>
+
+
    <div class="decorative-elements">
        <div class="summer-icon sun">☀️</div>
        <div class="summer-icon palm">🌴</div>
@@ -762,8 +821,11 @@
 
        <div class="section video-container">
            <div class="video-wrapper" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-               <iframe src="https://drive.google.com/file/d/1slGi9JsAecw_ry0GFoeHVEL1sdfrojCH/preview" width="100%" height="100%"
-                   style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" allow="autoplay">
+               <iframe src="https://drive.google.com/file/d/1slGi9JsAecw_ry0GFoeHVEL1sdfrojCH/preview" 
+                       width="100%" height="100%"
+                       style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" 
+                       allow="autoplay"
+                       sandbox="allow-scripts allow-same-origin allow-presentation">
                </iframe>
            </div>
            <div style="text-align: center; margin-top: 1em;">
@@ -776,7 +838,7 @@
 
 
        <div class="section">
-           <h2 class="section-title">📸 Galerie Photos</h2>
+           <h2 class="section-title">📸 Galerie Photos</h2>Christelle
            <div class="gallery">
                <div class="gallery-item" onclick="openModal(0)">
                    <div class="gallery-placeholder"><img src="./img/1.jpg" alt=""></div>
@@ -873,6 +935,39 @@
 
 
    <script>
+       // Password protection
+       const correctPassword = "ploemeur2024"; // Change this to your desired password
+       
+       function checkPassword() {
+           const input = document.getElementById('passwordInput').value;
+           const errorDiv = document.getElementById('passwordError');
+           
+           if (input === correctPassword) {
+               document.getElementById('passwordOverlay').style.display = 'none';
+               localStorage.setItem('vlogAccess', 'granted');
+               errorDiv.textContent = '';
+           } else {
+               errorDiv.textContent = 'Mot de passe incorrect !';
+               document.getElementById('passwordInput').value = '';
+               document.getElementById('passwordInput').focus();
+           }
+       }
+       
+       // Check if user already entered correct password
+       document.addEventListener('DOMContentLoaded', function() {
+           if (localStorage.getItem('vlogAccess') === 'granted') {
+               document.getElementById('passwordOverlay').style.display = 'none';
+           }
+           
+           // Allow Enter key to submit password
+           document.getElementById('passwordInput').addEventListener('keypress', function(e) {
+               if (e.key === 'Enter') {
+                   checkPassword();
+               }
+           });
+       });
+
+
        // Gestion de l'audio d'ambiance
        let audioPlaying = false;
        const audio = document.getElementById('backgroundAudio');
